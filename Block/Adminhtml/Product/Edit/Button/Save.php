@@ -2,8 +2,8 @@
 
 namespace Magedirect\CustomCatalog\Block\Adminhtml\Product\Edit\Button;
 
-use \Magento\Catalog\Block\Adminhtml\Product\Edit\Button\Generic;
-use \Magento\Ui\Component\Control\Container;
+use Magento\Catalog\Block\Adminhtml\Product\Edit\Button\Generic;
+use Magento\Ui\Component\Control\Container;
 
 /**
  * Class Save

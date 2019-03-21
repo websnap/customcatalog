@@ -2,8 +2,8 @@
 
 namespace Magedirect\CustomCatalog\Model;
 
-use \Magento\Catalog\Api\ProductRepositoryInterface;
-use \Magento\Framework\Api\SearchCriteriaBuilder;
+use Magento\Catalog\Api\ProductRepositoryInterface;
+use Magento\Framework\Api\SearchCriteriaBuilder;
 use Magedirect\CustomCatalog\Api\Data\ProductInterface;
 use Magedirect\CustomCatalog\Model\Product\UpdatePublisher;
 

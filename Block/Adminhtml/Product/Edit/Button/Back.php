@@ -2,7 +2,7 @@
 
 namespace Magedirect\CustomCatalog\Block\Adminhtml\Product\Edit\Button;
 
-use \Magento\Catalog\Block\Adminhtml\Product\Edit\Button\Generic;
+use Magento\Catalog\Block\Adminhtml\Product\Edit\Button\Generic;
 
 /**
  * Class Back

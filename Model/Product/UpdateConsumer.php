@@ -2,7 +2,7 @@
 
 namespace Magedirect\CustomCatalog\Model\Product;
 
-use \Magento\Catalog\Model\ResourceModel\Product\Action;
+use Magento\Catalog\Model\ResourceModel\Product\Action;
 use Magedirect\CustomCatalog\Model\Logger;
 use Magedirect\CustomCatalog\Api\Data\ProductInterface;
 

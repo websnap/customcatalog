@@ -2,7 +2,7 @@
 
 namespace Magedirect\CustomCatalog\Model\Product;
 
-use \Magento\Framework\MessageQueue\PublisherInterface;
+use Magento\Framework\MessageQueue\PublisherInterface;
 use Magedirect\CustomCatalog\Api\Data\ProductInterface;
 
 class UpdatePublisher
