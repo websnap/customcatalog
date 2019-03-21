@@ -1,0 +1,43 @@
+<?xml version="1.0"?>
+
+<config xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+        xsi:noNamespaceSchemaLocation="urn:magento:framework:ObjectManager/etc/config.xsd">
+    <virtualType name="Magedirect\CustomCatalog\Ui\DataProvider\Product\Form\Modifier\System"
+                 type="Magento\Catalog\Ui\DataProvider\Product\Form\Modifier\System">
+        <arguments>
+            <argument name="productUrls" xsi:type="array">
+                <item name="submit_url" xsi:type="string">customcatalog/product/save</item>
+                <item name="reloadUrl" xsi:type="string">customcatalog/product/reload</item>
+            </argument>
+        </arguments>
+    </virtualType>
+    <virtualType name="Magedirect\CustomCatalog\DataProvider\Modifier\Pool"
+                 type="Magento\Ui\DataProvider\Modifier\Pool">
+        <arguments>
+            <argument name="modifiers" xsi:type="array">
+                <item name="eav" xsi:type="array">
+                    <item name="class" xsi:type="string">Magento\Catalog\Ui\DataProvider\Product\Form\Modifier\Eav
+                    </item>
+                    <item name="sortOrder" xsi:type="number">10</item>
+                </item>
+                <item name="system" xsi:type="array">
+                    <item name="class" xsi:type="string">
+                        Magedirect\CustomCatalog\Ui\DataProvider\Product\Form\Modifier\System
+                    </item>
+                    <item name="sortOrder" xsi:type="number">40</item>
+                </item>
+                <item name="customcatalog" xsi:type="array">
+                    <item name="class" xsi:type="string">
+                        Magedirect\CustomCatalog\Ui\DataProvider\Product\Form\Modifier\Customcatalog
+                    </item>
+                    <item name="sortOrder" xsi:type="number">20</item>
+                </item>
+            </argument>
+        </arguments>
+    </virtualType>
+    <type name="Magedirect\CustomCatalog\Ui\DataProvider\Product\Form\ProductDataProvider">
+        <arguments>
+            <argument name="pool" xsi:type="object">Magedirect\CustomCatalog\DataProvider\Modifier\Pool</argument>
+        </arguments>
+    </type>
+</config>
