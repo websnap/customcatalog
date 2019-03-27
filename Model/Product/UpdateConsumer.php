@@ -3,8 +3,8 @@
 namespace Magedirect\CustomCatalog\Model\Product;
 
 use Magento\Catalog\Model\ResourceModel\Product\Action;
-use Magedirect\CustomCatalog\Model\Logger;
-use Magedirect\CustomCatalog\Api\Data\ProductInterface;
+use Monolog\Logger;
+use Magedirect\CustomCatalog\Api\Data\MessageInterface;
 
 class UpdateConsumer
 {
@@ -19,13 +19,12 @@ class UpdateConsumer
      * @var Logger
      */
     protected $logger;
-
+    
     /**
      * UpdateConsumer constructor.
      *
      * @param Action $action
      * @param Logger $logger
-     * @throws \Magento\Framework\Exception\$loggerFactory
      */
     public function __construct(
         Action $action,
@@ -36,20 +35,24 @@ class UpdateConsumer
     }
 
     /**
-     * @param ProductInterface $product
+     * @param MessageInterface $message
      * @throws \Exception
      */
-    public function processMessage(ProductInterface $product)
+    public function processMessage(MessageInterface $message)
     {
-        $data = $this->filterNullValues($product->getData());
+        $data = $message->getData();
+        $data = $this->filterNullValues($data);
+        $data = $this->filterNonExistingAttributes($data);
+        $storeId = $message->getStoreId();
 
         $this->logger->info('Update Product Start');
         $this->logger->info('Product Data: ', $data);
+        $this->logger->info('Store ID: ', [$storeId]);
         try {
             $this->action->updateAttributes(
-                [$product->getEntityId()],
+                [$message->getEntityId()],
                 $data,
-                0
+                $storeId
             );
             $this->logger->info('Update Product Finish');
         } catch (\Exception $exception) {
@@ -62,8 +65,20 @@ class UpdateConsumer
     {
         $newArray = [];
         foreach ($array as $key => $value) {
-            if (!is_null($value)) {
+            if ($value !== null) {
                 $newArray[$key] = $value;
+            }
+        }
+
+        return $newArray;
+    }
+
+    private function filterNonExistingAttributes($attributeCodes)
+    {
+        $newArray = [];
+        foreach ($attributeCodes as $attributeCode => $value) {
+            if ($this->action->getAttribute($attributeCode) !== false) {
+                $newArray[$attributeCode] = $value;
             }
         }
 

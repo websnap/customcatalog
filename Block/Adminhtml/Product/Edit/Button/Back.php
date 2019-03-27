@@ -10,7 +10,7 @@ use Magento\Catalog\Block\Adminhtml\Product\Edit\Button\Generic;
 class Back extends Generic
 {
     /**
-     * @return array
+     * {@inheritdoc}
      */
     public function getButtonData()
     {

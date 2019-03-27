@@ -2,29 +2,22 @@
 
 <config xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
         xsi:noNamespaceSchemaLocation="urn:magento:framework:ObjectManager/etc/config.xsd">
-    <virtualType name="Magedirect\CustomCatalog\Ui\DataProvider\Product\Form\Modifier\System"
-                 type="Magento\Catalog\Ui\DataProvider\Product\Form\Modifier\System">
-        <arguments>
-            <argument name="productUrls" xsi:type="array">
-                <item name="submit_url" xsi:type="string">customcatalog/product/save</item>
-                <item name="reloadUrl" xsi:type="string">customcatalog/product/reload</item>
-            </argument>
-        </arguments>
-    </virtualType>
+
     <virtualType name="Magedirect\CustomCatalog\DataProvider\Modifier\Pool"
                  type="Magento\Ui\DataProvider\Modifier\Pool">
         <arguments>
             <argument name="modifiers" xsi:type="array">
                 <item name="eav" xsi:type="array">
-                    <item name="class" xsi:type="string">Magento\Catalog\Ui\DataProvider\Product\Form\Modifier\Eav
+                    <item name="class" xsi:type="string">
+                        Magento\Catalog\Ui\DataProvider\Product\Form\Modifier\Eav
                     </item>
                     <item name="sortOrder" xsi:type="number">10</item>
                 </item>
                 <item name="system" xsi:type="array">
                     <item name="class" xsi:type="string">
-                        Magedirect\CustomCatalog\Ui\DataProvider\Product\Form\Modifier\System
+                        Magento\Catalog\Ui\DataProvider\Product\Form\Modifier\System
                     </item>
-                    <item name="sortOrder" xsi:type="number">40</item>
+                    <item name="sortOrder" xsi:type="number">15</item>
                 </item>
                 <item name="customcatalog" xsi:type="array">
                     <item name="class" xsi:type="string">
@@ -35,9 +28,18 @@
             </argument>
         </arguments>
     </virtualType>
-    <type name="Magedirect\CustomCatalog\Ui\DataProvider\Product\Form\ProductDataProvider">
+    <virtualType name="Magedirect\CustomCatalog\Ui\DataProvider\Product\Form\ProductDataProvider"
+                 type="Magento\Catalog\Ui\DataProvider\Product\Form\ProductDataProvider">
         <arguments>
             <argument name="pool" xsi:type="object">Magedirect\CustomCatalog\DataProvider\Modifier\Pool</argument>
         </arguments>
+    </virtualType>
+    <type name="Magento\Catalog\Ui\DataProvider\Product\Form\Modifier\System">
+        <plugin name="magedirect_customcatalog_system_modifier"
+                type="Magedirect\CustomCatalog\Plugin\Catalog\Ui\DataProvider\Product\Form\Modifier\System"/>
+    </type>
+    <type name="Magento\Framework\Controller\Result\Redirect">
+        <plugin name="magedirect_customcatalog_product_save_redirect"
+                type="Magedirect\CustomCatalog\Plugin\Framework\Controller\Result\Redirect"/>
     </type>
 </config>

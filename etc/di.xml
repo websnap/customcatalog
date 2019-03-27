@@ -5,17 +5,23 @@
     <preference for="Magedirect\CustomCatalog\Api\ProductRepositoryInterface"
                 type="Magedirect\CustomCatalog\Model\ProductRepository"/>
     <preference for="Magedirect\CustomCatalog\Api\Data\ProductInterface" type="Magedirect\CustomCatalog\Model\Product"/>
+    <preference for="Magedirect\CustomCatalog\Api\Data\MessageInterface" type="Magedirect\CustomCatalog\Model\Message"/>
     <type name="Magedirect\CustomCatalog\Logger\Handler">
         <arguments>
             <argument name="filesystem" xsi:type="object">Magento\Framework\Filesystem\Driver\File</argument>
         </arguments>
     </type>
-    <type name="Magedirect\CustomCatalog\Model\Logger">
+    <virtualType name="Magedirect\CustomCatalog\Model\Logger\Virtual" type="Monolog\Logger">
         <arguments>
             <argument name="name" xsi:type="string">MagedirectCustomCatalogLogger</argument>
             <argument name="handlers" xsi:type="array">
                 <item name="system" xsi:type="object">Magedirect\CustomCatalog\Model\Logger\Handler</item>
             </argument>
+        </arguments>
+    </virtualType>
+    <type name="Magedirect\CustomCatalog\Model\Product\UpdateConsumer">
+        <arguments>
+            <argument name="logger" xsi:type="object">Magedirect\CustomCatalog\Model\Logger\Virtual</argument>
         </arguments>
     </type>
 </config>

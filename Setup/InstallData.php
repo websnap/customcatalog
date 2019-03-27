@@ -2,6 +2,8 @@
 
 namespace Magedirect\CustomCatalog\Setup;
 
+use Magento\Eav\Setup\EavSetup;
+use Magento\Eav\Setup\EavSetupFactory;
 use Magento\Framework\Setup\InstallDataInterface;
 use Magento\Framework\Setup\ModuleContextInterface;
 use Magento\Framework\Setup\ModuleDataSetupInterface;
@@ -34,27 +36,8 @@ class InstallData implements InstallDataInterface
      */
     public function install(ModuleDataSetupInterface $setup, ModuleContextInterface $context)
     {
+        /** @var EavSetup $eavSetup */
         $eavSetup = $this->eavSetupFactory->create();
-        $eavSetup->addAttribute(
-            \Magento\Catalog\Model\Product::ENTITY,
-            'product_id',
-            [
-                'group' => 'General',
-                'type' => 'varchar',
-                'label' => 'Product ID',
-                'input' => 'text',
-                'required' => false,
-                'sort_order' => 10,
-                'global' => \Magento\Eav\Model\Entity\Attribute\ScopedAttributeInterface::SCOPE_GLOBAL,
-                'is_used_in_grid' => true,
-                'is_visible_in_grid' => true,
-                'is_filterable_in_grid' => true,
-                'visible' => true,
-                'is_html_allowed_on_front' => true,
-                'visible_on_front' => true,
-                'unique' => true
-            ]
-        );
         $eavSetup->addAttribute(
             \Magento\Catalog\Model\Product::ENTITY,
             'copy_write_info',

@@ -6,6 +6,10 @@ use Magento\Catalog\Ui\DataProvider\Product\Form\Modifier\Eav;
 
 class Customcatalog extends Eav
 {
+
+    /**
+     * {@inheritdoc}
+     */
     public function modifyMeta(array $meta)
     {
         $meta = parent::modifyMeta($meta);
@@ -17,11 +21,13 @@ class Customcatalog extends Eav
         $children = [];
 
         // TODO move to system configuration list of available fields
-        $attributesLimit = ['container_sku', 'container_vpn', 'container_product_id', 'container_copy_write_info'];
+        $attributesLimit = ['container_sku', 'container_vpn', 'container_copy_write_info'];
 
-        if (isset($meta['product-details']['children'])) foreach ($meta['product-details']['children'] as $childName => $childData) {
-            if (in_array($childName, $attributesLimit)) {
-                $children[$childName] = $childData;
+        if (isset($meta['product-details']['children'])) {
+            foreach ($meta['product-details']['children'] as $childName => $childData) {
+                if (in_array($childName, $attributesLimit)) {
+                    $children[$childName] = $childData;
+                }
             }
         }
 

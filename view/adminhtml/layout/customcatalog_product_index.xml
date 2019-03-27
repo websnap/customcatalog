@@ -16,7 +16,7 @@
         </referenceBlock>
         <referenceContainer name="content">
             <uiComponent name="customcatalog_product_listing"/>
-            <block class="Magento\Catalog\Block\Adminhtml\Product" name="products_list"/>
+            <block class="Magedirect\CustomCatalog\Block\Adminhtml\Product" name="products_list"/>
         </referenceContainer>
     </body>
 </page>

@@ -3,7 +3,7 @@
 namespace Magedirect\CustomCatalog\Model\Product;
 
 use Magento\Framework\MessageQueue\PublisherInterface;
-use Magedirect\CustomCatalog\Api\Data\ProductInterface;
+use Magedirect\CustomCatalog\Api\Data\MessageInterface;
 
 class UpdatePublisher
 {
@@ -23,10 +23,10 @@ class UpdatePublisher
     }
 
     /**
-     * @param ProductInterface $product
+     * @param MessageInterface $message
      */
-    public function execute(ProductInterface $product)
+    public function execute(MessageInterface $message)
     {
-        $this->publisher->publish(self::TOPIC_NAME, $product);
+        $this->publisher->publish(self::TOPIC_NAME, $message);
     }
 }

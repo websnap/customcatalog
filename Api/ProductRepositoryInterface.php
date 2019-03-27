@@ -27,5 +27,4 @@ interface ProductRepositoryInterface
      * @throws \Magento\Framework\Exception\ValidatorException
      */
     public function update(ProductInterface $product);
-
 }

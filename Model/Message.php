@@ -2,7 +2,7 @@
 
 namespace Magedirect\CustomCatalog\Model;
 
-class Product extends \Magento\Framework\DataObject implements \Magedirect\CustomCatalog\Api\Data\ProductInterface
+class Message extends \Magento\Framework\DataObject implements \Magedirect\CustomCatalog\Api\Data\MessageInterface
 {
 
     /**
@@ -62,6 +62,26 @@ class Product extends \Magento\Framework\DataObject implements \Magedirect\Custo
     public function setVpn($value)
     {
         $this->setData(self::VPN, $value);
+        return $this;
+    }
+
+    /**
+     * Return Store ID
+     * @return int
+     */
+    public function getStoreId()
+    {
+        return $this->getData(self::STORE_ID);
+    }
+
+    /**
+     * Set Store ID
+     * @param int $value
+     * @return $this
+     */
+    public function setStoreId($value)
+    {
+        $this->setData(self::STORE_ID, $value);
         return $this;
     }
 }

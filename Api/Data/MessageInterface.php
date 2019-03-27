@@ -3,10 +3,10 @@
 namespace Magedirect\CustomCatalog\Api\Data;
 
 /**
- * Interface ProductInterface
+ * Interface MessageInterface
  * @package Magedirect\CustomCatalog\Api\Data
  */
-interface ProductInterface
+interface MessageInterface
 {
 
     const ENTITY_ID = 'entity_id';
@@ -14,6 +14,8 @@ interface ProductInterface
     const COPY_WRITE_INFO = 'copy_write_info';
 
     const VPN = 'vpn';
+
+    const STORE_ID = 'store_id';
 
     /** @return string */
     public function getEntityId();
@@ -41,4 +43,13 @@ interface ProductInterface
      * @return $this
      */
     public function setVpn($value);
+
+    /** @return int */
+    public function getStoreId();
+
+    /**
+     * @param int $value
+     * @return $this
+     */
+    public function setStoreId($value);
 }
