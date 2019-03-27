@@ -19,7 +19,7 @@ class UpdateConsumer
      * @var Logger
      */
     protected $logger;
-    
+
     /**
      * UpdateConsumer constructor.
      *
